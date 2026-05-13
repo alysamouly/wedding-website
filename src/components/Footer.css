@@ -27,3 +27,9 @@
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 4rem 0;
+  }
+}

@@ -32,5 +32,11 @@
 @media (max-width: 768px) {
   .faqs-grid {
     grid-template-columns: 1fr;
+    margin-top: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .faq-item {
+    padding: 1.5rem;
   }
 }
