@@ -1,0 +1,29 @@
+.footer {
+  padding: 6rem 0;
+  background-color: #eaddd3;
+  color: var(--text-primary);
+}
+
+.footer-logo {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.footer-message {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.footer-contact {
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+}
+
+.footer-date {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
