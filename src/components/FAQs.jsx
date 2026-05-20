@@ -5,7 +5,7 @@ const FAQs = () => {
   return (
     <section id="faqs" className="faqs-section">
       <div className="container">
-        <h2 className="section-title text-center">FA<span className="script-font">Q</span>s</h2>
+        <h2 className="section-title text-center">FAQs</h2>
         
         <div className="faqs-grid">
           <div className="faq-item">
@@ -14,8 +14,8 @@ const FAQs = () => {
           </div>
           
           <div className="faq-item">
-            <h3>Are kids allowed?</h3>
-            <p>While we love your little ones, this will be an adults-only celebration. No kids allowed.</p>
+            <h3>Are children allowed?</h3>
+            <p>While we love your little ones, this will be an adults-only celebration. No children allowed.</p>
           </div>
           
           <div className="faq-item">

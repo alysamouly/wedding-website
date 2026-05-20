@@ -6,6 +6,9 @@ const ThingsToDo = () => {
     <section id="things-to-do" className="things-to-do-section">
       <div className="container">
         <h2 className="section-title text-center">Things to <span className="script-font">Do</span></h2>
+        <p className="text-center" style={{ marginBottom: '3rem', color: 'var(--text-secondary)' }}>
+          A map will be provided at a later date with our favourite neighborhoods, restaurants, and attractions.
+        </p>
         
         <div className="things-grid">
           <div className="things-column">

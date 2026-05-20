@@ -11,7 +11,7 @@ const WhereToStay = () => {
           
           <div className="info-block">
             <h3>• Sofitel Cairo Downtown Nile</h3>
-            <p>Our stunning venue. Room block information for our guests at the Sofitel will be provided at a later date. Please check back here soon.</p>
+            <p>Our venue. Room block information for our guests at the Sofitel will be provided at a later date. Please check back here soon.</p>
           </div>
           
           <div className="info-block">

@@ -7,6 +7,7 @@ import WhereToStay from './components/WhereToStay';
 import ThingsToDo from './components/ThingsToDo';
 import Vibes from './components/Vibes';
 import FAQs from './components/FAQs';
+import Gallery from './components/Gallery';
 import Footer from './components/Footer';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <WhereToStay />
         <ThingsToDo />
         <Vibes />
+        <Gallery />
         <FAQs />
       </main>
       <Footer />

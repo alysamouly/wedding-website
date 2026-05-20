@@ -41,6 +41,7 @@ const Header = () => {
           <a href="#travel-stay" onClick={closeMenu}>Travel & Stay</a>
           <a href="#things-to-do" onClick={closeMenu}>Things to Do</a>
           <a href="#vibes" onClick={closeMenu}>Discover Cairo</a>
+          <a href="#gallery" onClick={closeMenu}>Gallery</a>
           <a href="#faqs" onClick={closeMenu}>FAQs</a>
         </nav>
       </div>
