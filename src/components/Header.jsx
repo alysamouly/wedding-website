@@ -1,48 +1,103 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Header.css';
 
+const NAV = [
+  { href: '#events', label: 'Events' },
+  { href: '#travel', label: 'Travel' },
+  { href: '#stay', label: 'Stay' },
+  { href: '#map', label: 'Explore' },
+  { href: '#vibes', label: 'Cairo' },
+  { href: '#gallery', label: 'Gallery' },
+  { href: '#faqs', label: 'FAQs' },
+];
+
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeId, setActiveId] = useState('');
 
-  const toggleMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    // Prevent scrolling when mobile menu is open
-    if (!isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  };
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const closeMenu = () => {
-    setIsMobileMenuOpen(false);
-    document.body.style.overflow = 'unset';
-  };
+  // Highlight whichever section is sitting across the middle of the viewport.
+  useEffect(() => {
+    const sections = NAV.map(({ href }) => document.querySelector(href)).filter(Boolean);
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (visible) setActiveId(`#${visible.target.id}`);
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    const onKeyDown = (e) => e.key === 'Escape' && setIsMenuOpen(false);
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
   return (
-    <header className="header">
-      <div className="header-container">
-        <div className="logo">
-          <a href="#">AA</a>
-        </div>
+    <header className={`header ${isScrolled ? 'is-scrolled' : ''} ${isMenuOpen ? 'is-open' : ''}`}>
+      <div className="header-inner">
+        <a className="logo" href="#top" aria-label="Abbey and Aly — back to top">
+          <span>A</span>
+          <span className="logo-amp script-font">&amp;</span>
+          <span>A</span>
+        </a>
 
-        <button 
-          className={`mobile-menu-btn ${isMobileMenuOpen ? 'open' : ''}`} 
-          onClick={toggleMenu} 
-          aria-label="Toggle menu"
+        <nav className="nav" aria-label="Primary">
+          {NAV.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              className={activeId === href ? 'is-active' : ''}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <button
+          className={`menu-btn ${isMenuOpen ? 'is-open' : ''}`}
+          onClick={() => setIsMenuOpen((open) => !open)}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span />
+          <span />
         </button>
+      </div>
 
-        <nav className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-          <a href="#events" onClick={closeMenu}>Events</a>
-          <a href="#travel-stay" onClick={closeMenu}>Travel & Stay</a>
-          <a href="#things-to-do" onClick={closeMenu}>Things to Do</a>
-          <a href="#vibes" onClick={closeMenu}>Discover Cairo</a>
-          <a href="#gallery" onClick={closeMenu}>Gallery</a>
-          <a href="#faqs" onClick={closeMenu}>FAQs</a>
+      <div className={`menu-panel ${isMenuOpen ? 'is-open' : ''}`} aria-hidden={!isMenuOpen}>
+        <nav aria-label="Mobile">
+          {NAV.map(({ href, label }, i) => (
+            <a
+              key={href}
+              href={href}
+              style={{ transitionDelay: isMenuOpen ? `${80 + i * 40}ms` : '0ms' }}
+              onClick={() => setIsMenuOpen(false)}
+              tabIndex={isMenuOpen ? 0 : -1}
+            >
+              {label}
+            </a>
+          ))}
         </nav>
       </div>
     </header>

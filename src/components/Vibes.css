@@ -1,0 +1,36 @@
+.vibes {
+  background-color: var(--ivory);
+}
+
+.vibes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.clip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.clip video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background-color: var(--sand-deep);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.clip figcaption {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.clip figcaption a:hover {
+  color: var(--clay);
+}

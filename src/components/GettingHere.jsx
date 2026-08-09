@@ -1,29 +1,48 @@
-import React from 'react';
 import './GettingHere.css';
+
+const NOTES = [
+  {
+    title: 'By air',
+    body: 'Cairo International Airport (CAI) is the way in. It is a major hub with direct flights from across Europe, the Gulf and North America.',
+  },
+  {
+    title: 'From the airport',
+    body: 'A hotel transfer or a pre-booked private driver is the smoothest arrival — roughly 45 to 60 minutes to the Nile, traffic depending.',
+  },
+  {
+    title: 'Around the city',
+    body: 'Use Uber or Careem over street taxis: safe, cheap and no negotiating. For a full day out, hiring a driver is well worth it.',
+  },
+];
 
 const GettingHere = () => {
   return (
-    <section id="travel-stay" className="getting-here-section">
-      <div className="container getting-here-container">
-        
-        <div className="getting-here-image">
-          <img src="/images/IMG_0813.JPG" alt="Couple by the Nile" />
+    <section id="travel" className="section getting-here">
+      <div className="container split">
+        <div className="split-media reveal">
+          <img src="/images/IMG_0813.JPG" alt="Abbey and Aly by the Nile in Cairo" loading="lazy" />
         </div>
-        
-        <div className="getting-here-content">
-          <h2 className="section-title">Getting <span className="script-font">Here</span></h2>
-          
-          <div className="info-block">
-            <h3>• By Air</h3>
-            <p>Cairo International Airport is the primary point of entry. It is a major hub and receives flights from all over the world.</p>
+
+        <div className="getting-here-copy">
+          <div className="section-head reveal">
+            <span className="eyebrow">Travel</span>
+            <h2 className="section-title">
+              Getting <span className="script-font">Here</span>
+            </h2>
           </div>
-          
-          <div className="info-block">
-            <h3>• Local Transport</h3>
-            <p>For getting around, we highly recommend using Uber or Careem over standard taxis. It is safe, affordable, and very convenient. Hotel transfers or hiring a private driver are the most recommended options for seamless travel from the airport to your hotel.</p>
-          </div>
+
+          <ol className="notes">
+            {NOTES.map((note, i) => (
+              <li key={note.title} className="note reveal" style={{ '--reveal-delay': `${i * 90}ms` }}>
+                <span className="note-index">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 className="note-title">{note.title}</h3>
+                  <p className="note-body">{note.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
-        
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './Gallery.css';
 
 const images = [
@@ -18,70 +18,91 @@ const images = [
 
 const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const isOpen = selectedIndex !== null;
 
-  const openModal = (index) => {
-    setSelectedIndex(index);
-    document.body.style.overflow = 'hidden';
-  };
+  const closeModal = useCallback(() => setSelectedIndex(null), []);
 
-  const closeModal = () => {
-    setSelectedIndex(null);
-    document.body.style.overflow = 'unset';
-  };
-
-  const prevImage = useCallback((e) => {
-    if (e) e.stopPropagation();
-    setSelectedIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-  }, []);
-
-  const nextImage = useCallback((e) => {
-    if (e) e.stopPropagation();
-    setSelectedIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+  const step = useCallback((delta) => {
+    setSelectedIndex((i) => (i + delta + images.length) % images.length);
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (selectedIndex === null) return;
-      if (e.key === 'ArrowRight') {
-        nextImage();
-      } else if (e.key === 'ArrowLeft') {
-        prevImage();
-      } else if (e.key === 'Escape') {
-        closeModal();
-      }
+    if (!isOpen) return;
+
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e) => {
+      if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === 'Escape') closeModal();
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedIndex, nextImage, prevImage]);
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, step, closeModal]);
 
   return (
-    <section id="gallery" className="gallery-section">
+    <section id="gallery" className="section section--paper gallery">
       <div className="container">
-        <h2 className="section-title text-center">Cairo <span className="script-font">Memories</span></h2>
-        <p className="gallery-subtitle">Here are some photos from our trip to Cairo!</p>
-        
+        <div className="section-head section-head--center reveal">
+          <span className="eyebrow eyebrow--center">Us, over there</span>
+          <h2 className="section-title">
+            Cairo <span className="script-font">Memories</span>
+          </h2>
+          <p className="lede">A few photos from our last trip, and a preview of what to expect.</p>
+        </div>
+
         <div className="gallery-grid">
           {images.map((img, index) => (
-            <div 
-              key={index} 
-              className="gallery-item"
-              onClick={() => openModal(index)}
+            <button
+              key={img}
+              className="gallery-item reveal"
+              style={{ '--reveal-delay': `${(index % 4) * 70}ms` }}
+              onClick={() => setSelectedIndex(index)}
+              aria-label={`Open photo ${index + 1} of ${images.length}`}
             >
               <img src={`/images/${img}`} alt={`Cairo memory ${index + 1}`} loading="lazy" />
-            </div>
+            </button>
           ))}
         </div>
       </div>
 
-      {selectedIndex !== null && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <button className="modal-close" onClick={closeModal}>&times;</button>
-          <button className="modal-nav prev" onClick={prevImage}>&#10094;</button>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <img src={`/images/${images[selectedIndex]}`} alt="Expanded Cairo memory" />
-          </div>
-          <button className="modal-nav next" onClick={nextImage}>&#10095;</button>
+      {isOpen && (
+        <div className="lightbox" role="dialog" aria-modal="true" onClick={closeModal}>
+          <button className="lightbox-close" onClick={closeModal} aria-label="Close">
+            &times;
+          </button>
+
+          <button
+            className="lightbox-nav prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              step(-1);
+            }}
+            aria-label="Previous photo"
+          >
+            &#8249;
+          </button>
+
+          <figure className="lightbox-figure" onClick={(e) => e.stopPropagation()}>
+            <img src={`/images/${images[selectedIndex]}`} alt={`Cairo memory ${selectedIndex + 1}`} />
+            <figcaption>
+              {selectedIndex + 1} / {images.length}
+            </figcaption>
+          </figure>
+
+          <button
+            className="lightbox-nav next"
+            onClick={(e) => {
+              e.stopPropagation();
+              step(1);
+            }}
+            aria-label="Next photo"
+          >
+            &#8250;
+          </button>
         </div>
       )}
     </section>

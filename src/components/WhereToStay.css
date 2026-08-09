@@ -1,61 +1,168 @@
-.where-to-stay-section {
-  padding: var(--spacing-xl) 0;
-  background-color: var(--bg-color);
+.stay-feature {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: stretch;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.where-to-stay-container {
-  display: flex;
-  align-items: center;
-  gap: 5rem;
+.stay-feature-media {
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 340px;
+  background-color: var(--sand);
 }
 
-.where-to-stay-content {
-  flex: 1;
-}
-
-.where-to-stay-content .section-title {
-  margin-bottom: 3rem;
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-}
-
-.where-to-stay-content .script-font {
-  color: var(--accent-color);
-}
-
-.where-to-stay-image {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.where-to-stay-image img {
-  width: 90%;
-  height: 700px;
+.stay-feature-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
   object-fit: cover;
-  border-radius: 4px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transition: transform 1.2s var(--ease);
 }
 
-@media (max-width: 992px) {
-  .where-to-stay-container {
-    flex-direction: column;
-    gap: 3rem;
+.stay-feature-media:hover img {
+  transform: scale(1.03);
+}
+
+.stay-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: clamp(2rem, 4vw, 3.25rem);
+  background-color: var(--sand);
+  border-radius: var(--radius);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  color: var(--clay);
+  background-color: var(--clay-tint);
+}
+
+.tag--venue::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--clay);
+}
+
+.stay-feature-title {
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  margin-top: 0.35rem;
+}
+
+.stay-feature-address {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stay-feature-blurb {
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
+  max-width: 46ch;
+}
+
+.stay-feature-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.stay-alts {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+
+.stay-alts-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.hotel-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1px;
+  background-color: var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.hotel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.85rem clamp(1rem, 2vw, 1.75rem);
+  background-color: var(--paper);
+  transition: background-color 0.3s var(--ease);
+}
+
+.hotel:hover {
+  background-color: var(--ivory);
+}
+
+.hotel-name {
+  font-size: 1.12rem;
+  line-height: 1.3;
+}
+
+.hotel-meta {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.hotel-blurb {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 0.25rem;
+  flex-grow: 1;
+}
+
+.hotel-link {
+  margin-top: 1rem;
+  align-self: flex-start;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.hotel:hover .hotel-link,
+.hotel-link:focus-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .stay-feature {
+    grid-template-columns: 1fr;
   }
-  
-  .where-to-stay-content {
-    order: 1;
+
+  .stay-feature-media,
+  .stay-feature-media img {
+    min-height: 260px;
+    max-height: 340px;
   }
-  
-  .where-to-stay-image {
-    order: 2;
-    justify-content: center;
-  }
-  
-  .where-to-stay-image img {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
+
+  .hotel-link {
+    opacity: 1;
+    transform: none;
   }
 }

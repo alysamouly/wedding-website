@@ -1,50 +1,41 @@
-import React from 'react';
+import './Vibes.css';
+
+const CLIPS = [
+  { src: '/images/vibes1.mp4', handle: 'husseinmardini' },
+  { src: '/images/vibes2.mp4', handle: 'nadam.ib' },
+  { src: '/images/vibes3.mp4', handle: 'ahmedtema' },
+];
 
 const Vibes = () => {
   return (
-    <section id="vibes" style={{ padding: '4rem 0', backgroundColor: 'var(--bg-color)' }}>
+    <section id="vibes" className="section vibes">
       <div className="container">
-        <h2 className="section-title text-center">Discover <span className="script-font">Cairo</span></h2>
-        <p className="text-center" style={{ marginBottom: '3rem', color: 'var(--text-secondary)' }}>
-          Our favourite content to show off the beauty of Cairo.
-        </p>
-        
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-            <video 
-              src="/images/vibes1.mp4#t=0.001" 
-              controls 
-              preload="metadata"
-              style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', marginBottom: '0.5rem' }} 
-            />
-            <a href="https://www.instagram.com/husseinmardini" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textDecoration: 'none' }}>
-              @husseinmardini
-            </a>
-          </div>
-          
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 'calc(50% - 1rem)' }}>
-            <video 
-              src="/images/vibes2.mp4#t=0.001" 
-              controls 
-              preload="metadata"
-              style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', marginBottom: '0.5rem' }} 
-            />
-            <a href="https://www.instagram.com/nadam.ib" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textDecoration: 'none' }}>
-              @nadam.ib
-            </a>
-          </div>
+        <div className="section-head section-head--center reveal">
+          <span className="eyebrow eyebrow--center">A taste of it</span>
+          <h2 className="section-title">
+            Discover <span className="script-font">Cairo</span>
+          </h2>
+          <p className="lede">
+            Our favourite films of the city, made by people who capture it better than we can
+            describe it.
+          </p>
+        </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 'calc(50% - 1rem)' }}>
-            <video 
-              src="/images/vibes3.mp4#t=0.001" 
-              controls 
-              preload="metadata"
-              style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', marginBottom: '0.5rem' }} 
-            />
-            <a href="https://www.instagram.com/ahmedtema" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textDecoration: 'none' }}>
-              @ahmedtema
-            </a>
-          </div>
+        <div className="vibes-grid">
+          {CLIPS.map((clip, i) => (
+            <figure key={clip.handle} className="clip reveal" style={{ '--reveal-delay': `${i * 90}ms` }}>
+              <video src={`${clip.src}#t=0.001`} controls preload="metadata" playsInline />
+              <figcaption>
+                <a
+                  href={`https://www.instagram.com/${clip.handle}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  @{clip.handle}
+                </a>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>
