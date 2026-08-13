@@ -273,10 +273,13 @@ export const PLACES = [
     id: 'fairmont',
     map: 'cairo',
     category: 'venue',
+    // Also surfaces under the "Where to stay" filter — it is the wedding hotel
+    // and the room block — while keeping its venue colouring and pin.
+    alsoIn: ['stay'],
     name: VENUE.fullName,
-    meta: 'May 3 · Corniche El Nil',
+    meta: 'May 3 · Corniche El Nil · Our room block',
     blurb:
-      'Where we are getting married. The ceremony and reception both take place here, right on the water in Ramlet Beaulac.',
+      'Where we are getting married, and where we would stay. The ceremony and reception both take place here, right on the water in Ramlet Beaulac, and we are holding a block of rooms for guests.',
     coords: VENUE.coords,
   },
   {

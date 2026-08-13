@@ -47,7 +47,6 @@ const Gallery = () => {
     <section id="gallery" className="section section--paper gallery">
       <div className="container">
         <div className="section-head section-head--center reveal">
-          <span className="eyebrow eyebrow--center">Us, over there</span>
           <h2 className="section-title">
             Cairo <span className="script-font">Memories</span>
           </h2>

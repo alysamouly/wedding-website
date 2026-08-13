@@ -40,8 +40,15 @@ const ExploreMap = () => {
     return used.map((key) => ({ key, ...CATEGORIES[key] }));
   }, [onMap]);
 
+  // A place can belong to a second list without changing its own colour — the
+  // Fairmont is the venue, but it belongs under "Where to stay" too.
   const visible = useMemo(
-    () => (filter === 'all' ? onMap : onMap.filter((place) => place.category === filter)),
+    () =>
+      filter === 'all'
+        ? onMap
+        : onMap.filter(
+            (place) => place.category === filter || place.alsoIn?.includes(filter),
+          ),
     [onMap, filter],
   );
 
