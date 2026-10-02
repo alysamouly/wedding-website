@@ -322,13 +322,24 @@ const ExploreMap = () => {
                       <p>{place.blurb}</p>
                       <a
                         className="link-arrow"
-                        href={directionsUrl(place.coords)}
+                        href={directionsUrl(place)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         Directions
                         <Arrow />
                       </a>
+                      {place.bookingUrl && (
+                        <a
+                          className="link-arrow"
+                          href={place.bookingUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Book
+                          <Arrow />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

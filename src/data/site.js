@@ -7,6 +7,7 @@ export const VENUE = {
   fullName: 'Fairmont Nile City Hotel',
   address: '2005B Corniche El Nil, Ramlet Beaulac, Cairo',
   coords: [31.2264, 30.0728], // [lng, lat]
+  mapsQuery: 'Fairmont Nile City, Cairo',
 };
 
 export const WEDDING_DATE = 'May 3, 2027';
@@ -18,7 +19,8 @@ export const WEEKEND = 'May 2 – 4, 2027';
 // "Book your room" buttons across the site turn into live links automatically.
 // Leave it empty and they render as a "link coming soon" placeholder instead.
 // ---------------------------------------------------------------------------
-export const ROOM_BLOCK_URL = '';
+export const ROOM_BLOCK_URL =
+  'https://all.accor.com/booking/en/accor/hotel/A5E9?compositions=1&stayplus=false&snu=false&accessibleRooms=false&hideWDR=false&productCode=null&hideHotelDetails=false&dateIn=2027-05-01&dateOut=2027-05-04';
 
 export const ROOM_BLOCK = {
   title: 'Our room block',

@@ -1,4 +1,8 @@
-import { VENUE } from './site';
+import { VENUE, ROOM_BLOCK_URL } from './site';
+
+// Booking.com hotel page, pre-filled with the wedding weekend dates.
+const bookingCom = (slug) =>
+  `https://www.booking.com/hotel/eg/${slug}.html?checkin=2027-05-01&checkout=2027-05-04&group_adults=2&no_rooms=1`;
 
 // ---------------------------------------------------------------------------
 // Everything below is stored in real world coordinates as [longitude, latitude]
@@ -281,6 +285,8 @@ export const PLACES = [
     blurb:
       'Where we are getting married, and where we would stay. The ceremony and reception both take place here, right on the water in Ramlet Beaulac, and we are holding a block of rooms for guests.',
     coords: VENUE.coords,
+    mapsQuery: VENUE.mapsQuery,
+    bookingUrl: ROOM_BLOCK_URL,
   },
   {
     id: 'sofitel',
@@ -290,6 +296,8 @@ export const PLACES = [
     meta: 'Gezira Island',
     blurb: 'On the southern tip of Gezira with the Nile wrapped around three sides.',
     coords: [31.2244, 30.0345],
+    mapsQuery: 'Sofitel Cairo Nile El Gezirah',
+    bookingUrl: bookingCom('el-gezirah-cairo'),
   },
   {
     id: 'ritz',
@@ -299,6 +307,8 @@ export const PLACES = [
     meta: 'Downtown',
     blurb: 'Luxury on the river, a short walk from Tahrir and the old Egyptian Museum.',
     coords: [31.2333, 30.0444],
+    mapsQuery: 'The Nile Ritz-Carlton, Cairo',
+    bookingUrl: bookingCom('the-nile-ritz-carlton-cairo'),
   },
   {
     id: 'marriott',
@@ -308,6 +318,8 @@ export const PLACES = [
     meta: 'Zamalek',
     blurb: 'A converted 19th-century palace on Gezira Island, with gardens to match.',
     coords: [31.2231, 30.0578],
+    mapsQuery: 'Cairo Marriott Hotel & Omar Khayyam Casino',
+    bookingUrl: bookingCom('cairo-marriott-omar-khayyam-casino'),
   },
   {
     id: 'ramses',
@@ -317,6 +329,8 @@ export const PLACES = [
     meta: 'Downtown',
     blurb: 'Straightforward, central and well priced, with big views over the river.',
     coords: [31.2325, 30.053],
+    mapsQuery: 'Ramses Hilton, Cairo',
+    bookingUrl: bookingCom('ramses-hilton'),
   },
   {
     id: 'pyramids',
@@ -326,6 +340,7 @@ export const PLACES = [
     meta: '45 min from the venue',
     blurb: 'The reason most people come. Go early in the morning to beat the heat and the crowds.',
     coords: [31.1342, 29.9792],
+    mapsQuery: 'Pyramids of Giza',
   },
   {
     id: 'gem',
@@ -335,6 +350,7 @@ export const PLACES = [
     meta: 'Giza',
     blurb: 'The new museum beside the plateau — Tutankhamun’s full collection under one roof.',
     coords: [31.1194, 29.9938],
+    mapsQuery: 'Grand Egyptian Museum',
   },
   {
     id: 'ibn-tulun',
@@ -344,6 +360,7 @@ export const PLACES = [
     meta: 'Sayyida Zeinab',
     blurb: 'The oldest mosque in the city still in its original form, and gloriously quiet.',
     coords: [31.2496, 30.0288],
+    mapsQuery: 'Mosque of Ibn Tulun, Cairo',
   },
   {
     id: 'gayer-anderson',
@@ -353,6 +370,7 @@ export const PLACES = [
     meta: 'Next to Ibn Tulun',
     blurb: 'Two joined Ottoman houses kept exactly as they were. Pair it with the mosque.',
     coords: [31.2508, 30.0278],
+    mapsQuery: 'Gayer-Anderson Museum, Cairo',
   },
   {
     id: 'khan',
@@ -362,6 +380,7 @@ export const PLACES = [
     meta: 'Islamic Cairo',
     blurb: 'The great market. Bring patience for the haggling and stop for mint tea.',
     coords: [31.2622, 30.0477],
+    mapsQuery: 'Khan el-Khalili, Cairo',
   },
   {
     id: 'coptic',
@@ -371,6 +390,7 @@ export const PLACES = [
     meta: 'Old Cairo',
     blurb: 'Churches, the Hanging Church and Ben Ezra Synagogue in a few walkable lanes.',
     coords: [31.2295, 30.0056],
+    mapsQuery: 'Coptic Cairo',
   },
   {
     id: 'fustat',
@@ -380,6 +400,7 @@ export const PLACES = [
     meta: 'Old Cairo',
     blurb: 'Craft workshops and pottery beside the oldest settlement in the city.',
     coords: [31.234, 30.0082],
+    mapsQuery: 'Fustat Traditional Crafts Center, Cairo',
   },
   {
     id: 'zamalek',
@@ -389,6 +410,7 @@ export const PLACES = [
     meta: 'Gezira Island',
     blurb: 'Leafy streets, galleries, cafés and the best of the city’s restaurants.',
     coords: [31.2197, 30.0614],
+    mapsQuery: 'Zamalek, Cairo',
   },
   {
     id: 'new-cairo',
@@ -398,6 +420,7 @@ export const PLACES = [
     meta: 'East of the city',
     blurb: 'Modern malls and dining if you want air conditioning and a break from the traffic.',
     coords: [31.4085, 30.0295],
+    mapsQuery: 'New Cairo, Egypt',
   },
   {
     id: 'cai',
@@ -407,6 +430,7 @@ export const PLACES = [
     meta: 'CAI · 45–60 min to the venue',
     blurb: 'Everyone flies into here. Arrange a hotel transfer or a driver rather than a taxi.',
     coords: [31.4056, 30.1219],
+    mapsQuery: 'Cairo International Airport',
   },
 
   {
@@ -417,6 +441,7 @@ export const PLACES = [
     meta: 'Where the weekend happens',
     blurb: 'Base yourself here for the wedding, then head out in any direction afterwards.',
     coords: [31.2357, 30.0444],
+    mapsQuery: 'Cairo, Egypt',
   },
   {
     id: 'alexandria',
@@ -426,6 +451,7 @@ export const PLACES = [
     meta: 'North · 3 hrs by road',
     blurb: 'The Mediterranean coast, the great library and seafood on the corniche.',
     coords: [29.9187, 31.2001],
+    mapsQuery: 'Alexandria, Egypt',
   },
   {
     id: 'sharm',
@@ -435,6 +461,7 @@ export const PLACES = [
     meta: 'East · 1 hr flight',
     blurb: 'Resorts and reefs at the tip of Sinai. The easiest Red Sea add-on.',
     coords: [34.33, 27.9158],
+    mapsQuery: 'Sharm El Sheikh, Egypt',
   },
   {
     id: 'dahab',
@@ -444,6 +471,7 @@ export const PLACES = [
     meta: 'East · 1.5 hrs from Sharm',
     blurb: 'Quieter and barefoot, for diving the Blue Hole and doing very little else.',
     coords: [34.5136, 28.5091],
+    mapsQuery: 'Dahab, Egypt',
   },
   {
     id: 'luxor',
@@ -453,6 +481,7 @@ export const PLACES = [
     meta: 'South · 1 hr flight',
     blurb: 'Karnak, the Valley of the Kings and the best of Pharaonic Egypt.',
     coords: [32.6396, 25.6872],
+    mapsQuery: 'Luxor, Egypt',
   },
   {
     id: 'aswan',
@@ -462,8 +491,11 @@ export const PLACES = [
     meta: 'South · 1.5 hr flight',
     blurb: 'Nubian villages, Philae temple and the calmest stretch of the river.',
     coords: [32.8998, 24.0889],
+    mapsQuery: 'Aswan, Egypt',
   },
 ];
 
-export const directionsUrl = ([lng, lat]) =>
-  `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+// Searches Google Maps by name so the link opens the place's own listing
+// (reviews, hours, photos) rather than a dropped pin at bare coordinates.
+export const directionsUrl = ({ mapsQuery }) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;

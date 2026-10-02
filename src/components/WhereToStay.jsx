@@ -3,6 +3,18 @@ import RoomBlockButton from './RoomBlockButton';
 import { ROOM_BLOCK, VENUE } from '../data/site';
 import { PLACES, directionsUrl } from '../data/places';
 
+const Arrow = () => (
+  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden="true">
+    <path
+      d="M0 4h12M9 1l3 3-3 3"
+      stroke="currentColor"
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 const HOTELS = PLACES.filter((place) => place.map === 'cairo' && place.category === 'stay');
 
 const WhereToStay = () => {
@@ -39,7 +51,7 @@ const WhereToStay = () => {
               <RoomBlockButton />
               <a
                 className="btn btn--ghost"
-                href={directionsUrl(VENUE.coords)}
+                href={directionsUrl(VENUE)}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -61,23 +73,28 @@ const WhereToStay = () => {
                 <h4 className="hotel-name">{hotel.name}</h4>
                 <span className="hotel-meta">{hotel.meta}</span>
                 <p className="hotel-blurb">{hotel.blurb}</p>
-                <a
-                  className="link-arrow hotel-link"
-                  href={directionsUrl(hotel.coords)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Map
-                  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden="true">
-                    <path
-                      d="M0 4h12M9 1l3 3-3 3"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </a>
+                <div className="hotel-links">
+                  {hotel.bookingUrl && (
+                    <a
+                      className="link-arrow"
+                      href={hotel.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Book
+                      <Arrow />
+                    </a>
+                  )}
+                  <a
+                    className="link-arrow"
+                    href={directionsUrl(hotel)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Map
+                    <Arrow />
+                  </a>
+                </div>
               </li>
             ))}
           </ul>

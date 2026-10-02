@@ -136,7 +136,9 @@
   flex-grow: 1;
 }
 
-.hotel-link {
+.hotel-links {
+  display: flex;
+  gap: 1.5rem;
   margin-top: 1rem;
   align-self: flex-start;
   opacity: 0;
@@ -144,8 +146,8 @@
   transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
 }
 
-.hotel:hover .hotel-link,
-.hotel-link:focus-visible {
+.hotel:hover .hotel-links,
+.hotel-links:focus-within {
   opacity: 1;
   transform: none;
 }
@@ -161,7 +163,7 @@
     max-height: 340px;
   }
 
-  .hotel-link {
+  .hotel-links {
     opacity: 1;
     transform: none;
   }
