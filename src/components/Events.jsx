@@ -3,13 +3,13 @@ import { VENUE } from '../data/site';
 
 const EVENTS = [
   {
-    day: 'Saturday',
+    day: 'Sunday',
     date: 'May 2',
     name: 'Welcome Dinner',
     detail: 'More details soon',
   },
   {
-    day: 'Sunday',
+    day: 'Monday',
     date: 'May 3',
     name: 'The Wedding',
     detail: VENUE.fullName,
@@ -17,7 +17,7 @@ const EVENTS = [
     featured: true,
   },
   {
-    day: 'Monday',
+    day: 'Tuesday',
     date: 'May 4',
     name: 'Farewell Brunch',
     detail: 'More details soon',
